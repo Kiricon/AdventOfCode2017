@@ -17,14 +17,13 @@ const spreadsheet = `5806	6444	1281	38	267	1835	223	4912	5995	230	4395	2986	6048
 
 const rows = spreadsheet.split('\n');
 const arr = [];
-rows.forEach(r => arr.push(r.split('\t')));
+rows.forEach(r => arr.push(r.split(/\s|\t/)));
 let sum = 0;
-console.log(arr);
 
 for(let y = 0; y < arr.length; y++) {
     let row = arr[y];
-    let smallest = row[0];
-    let largest = row[0];
+    let smallest = parseInt(row[0]);
+    let largest = parseInt(row[0]);
     for(let x = 1; x < row.length; x++) {
         if(row[x] > largest) {
             largest = parseInt(row[x]);
@@ -32,7 +31,6 @@ for(let y = 0; y < arr.length; y++) {
             smallest = parseInt(row[x]);
         }
     }
-
     sum += largest - smallest;
 }
 
